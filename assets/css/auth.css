@@ -1,0 +1,258 @@
+/* ============================================================
+   LaporHub - Gaya halaman login, registrasi, dan dashboard sementara
+   ============================================================ */
+
+:root {
+  --red: #ef4444;
+  --red-dark: #dc2626;
+  --navy: #0f172a;
+  --text: #334155;
+  --muted: #64748b;
+  --field: #eef2f7;
+  --border: #e2e8f0;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body.auth {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: #f1f4f9;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p { margin: 0; }
+a { text-decoration: none; }
+
+/* ---------- Kartu ---------- */
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 36px 32px 28px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
+.auth-card.wide {
+  max-width: 920px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  overflow: hidden;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+.logo svg { width: 20px; height: 20px; color: var(--red); }
+.logo em { font-style: normal; color: var(--red); }
+.logo-light { justify-content: flex-start; color: #fff; margin-bottom: 40px; }
+
+/* ---------- Judul ---------- */
+.auth-head { text-align: center; margin-bottom: 22px; }
+.auth-head h1 { font-size: 1.35rem; font-weight: 800; color: var(--navy); }
+.auth-head p { margin-top: 4px; font-size: 0.8rem; color: var(--muted); }
+.auth-head.left { text-align: left; }
+
+/* ---------- Panel samping (registrasi) ---------- */
+.auth-aside {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 32px;
+  color: #fff;
+  background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
+}
+.auth-aside h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+.auth-aside p { margin-top: 14px; font-size: 0.85rem; color: #cbd5e1; }
+
+.aside-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 32px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.aside-note svg { flex: none; width: 20px; height: 20px; color: var(--red); }
+
+.auth-form { padding: 40px 40px 28px; }
+
+/* ---------- Formulir ---------- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+
+.field { margin-bottom: 16px; }
+
+.field label,
+.label-row label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.label-row { display: flex; align-items: baseline; justify-content: space-between; }
+
+.input { position: relative; }
+
+.input input {
+  width: 100%;
+  height: 42px;
+  padding: 0 40px;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--navy);
+  background: var(--field);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.input input::placeholder { color: #94a3b8; }
+.input input:focus {
+  background: #fff;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.input .icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.input.plain input { padding: 0 14px; }
+.input.plain input[type='password'],
+.input.plain input[name='password'] { padding-right: 40px; }
+
+.input.invalid input { border-color: var(--red); background: #fff5f5; }
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.eye svg { width: 16px; height: 16px; }
+.eye:hover,
+.eye.on { color: var(--navy); }
+
+.field-error { margin-top: 5px; font-size: 0.72rem; color: var(--red-dark); }
+
+.check { margin: 2px 0 18px; }
+.check label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.check input { flex: none; width: 14px; height: 14px; margin: 2px 0 0; accent-color: var(--red); }
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: block;
+  width: 100%;
+  height: 44px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-dark { background: var(--navy); }
+.btn-dark:hover { background: #1e293b; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25); }
+.btn-red { background: var(--red); }
+.btn-red:hover { background: var(--red-dark); box-shadow: 0 8px 18px rgba(239, 68, 68, 0.3); }
+
+/* ---------- Tautan & teks kecil ---------- */
+.link-red { font-weight: 700; color: var(--red); }
+.link-red:hover { color: var(--red-dark); text-decoration: underline; }
+.small { font-size: 0.7rem; }
+
+.switch { margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--muted); }
+
+.divider { height: 1px; margin: 20px 0 16px; background: var(--border); }
+
+.portal-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.portal-link svg { width: 15px; height: 15px; }
+.portal-link:hover { color: var(--navy); }
+
+/* ---------- Pesan ---------- */
+.alert {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.alert-error { color: #991b1b; background: #fef2f2; border-color: #fecaca; }
+.alert-success { color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
+
+.note {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--field);
+  border-radius: 8px;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 820px) {
+  .auth-card.wide { max-width: 480px; grid-template-columns: 1fr; }
+  .auth-aside { padding: 28px 28px 24px; }
+  .logo-light { margin-bottom: 24px; }
+  .aside-note { margin-top: 20px; padding-top: 0; }
+  .auth-form { padding: 28px 28px 24px; }
+}
+
+@media (max-width: 520px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .auth-card { padding: 28px 22px 24px; }
+}

@@ -1,0 +1,20 @@
+
+# File sistem
+.DS_Store
+Thumbs.db
+
+# File editor
+.vscode/
+
+# File sementara
+*.log
+*.tmp
+*.bak
+*.old
+
+# Kredensial lokal
+.env
+.env.*
+
+# Backup database
+*.sql.gz
