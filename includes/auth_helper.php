@@ -72,7 +72,9 @@ function require_role(string ...$roles): void
     header('Cache-Control: no-store, no-cache, must-revalidate');
 
     if (!is_logged_in()) {
-        header('Location: ../auth/login.php');
+        // Halaman khusus petugas diarahkan ke portal petugas, sisanya ke login masyarakat
+        $login = in_array('masyarakat', $roles, true) ? '../auth/login.php' : '../admin/login.php';
+        header('Location: ' . $login);
         exit;
     }
     if (!in_array($_SESSION['role'], $roles, true)) {

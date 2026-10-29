@@ -6,7 +6,12 @@ if (is_logged_in()) {
     exit;
 }
 
-$portalAdmin = (($_GET['portal'] ?? '') === 'admin');
+// Portal petugas punya halaman sendiri
+if (($_GET['portal'] ?? '') === 'admin') {
+    header('Location: ../admin/login.php');
+    exit;
+}
+$portalAdmin = false;
 $error       = '';
 $identifier  = '';
 $flash       = flash_get();
@@ -129,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($portalAdmin): ?>
       <a href="login.php" class="portal-link">Login Masyarakat</a>
     <?php else: ?>
-      <a href="login.php?portal=admin" class="portal-link">
+      <a href="../admin/login.php" class="portal-link">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0H2Zm17-8 .5 1.300 1.300.5-1.300.5-.5 1.300-.5-1.300-1.300-.5 1.300-.5.5-1.300Z"/></svg>
         Portal Admin
       </a>

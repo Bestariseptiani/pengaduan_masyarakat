@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_valid()) {
     exit;
 }
 
+// Petugas kembali ke portal petugas, masyarakat ke login biasa
+$tujuan = (($_SESSION['role'] ?? 'masyarakat') === 'masyarakat') ? 'login.php' : '../admin/login.php';
+
 $_SESSION = [];
 
 if (ini_get('session.use_cookies')) {
@@ -15,8 +18,9 @@ if (ini_get('session.use_cookies')) {
 }
 session_destroy();
 
-// Mulai sesi baru hanya untuk pesan "berhasil keluar"
+// Mulai sesi baru (ID baru, supaya cookie-nya terkirim) hanya untuk pesan "berhasil keluar"
+session_id(bin2hex(random_bytes(16)));
 session_start();
 flash_set('success', 'Anda telah keluar. Sampai jumpa kembali.');
-header('Location: login.php');
+header('Location: ' . $tujuan);
 exit;
